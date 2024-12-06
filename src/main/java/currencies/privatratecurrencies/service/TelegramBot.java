@@ -13,7 +13,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 @RequiredArgsConstructor
 public class TelegramBot extends TelegramLongPollingBot {
-    private static final String DEFAULT_ANSWER = "Sorry, command was not recognized";
+    private static final String DEFAULT_MESSAGE = "Sorry, command was not recognized";
     private final BotConfig botConfig;
     private final PrivatBankService privatBankService;
 
@@ -47,7 +47,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     helpCommandReceived(chatId, update.getMessage().getChat().getFirstName());
                     break;
 
-                default: sendMessage(chatId, DEFAULT_ANSWER);
+                default: sendMessage(chatId, DEFAULT_MESSAGE);
             }
         }
     }
