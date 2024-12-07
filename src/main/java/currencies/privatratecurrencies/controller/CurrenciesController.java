@@ -4,7 +4,6 @@ import currencies.privatratecurrencies.dto.CurrencyArchiveResponseDto;
 import currencies.privatratecurrencies.dto.CurrencyResponseDataDto;
 import currencies.privatratecurrencies.service.PrivatBankService;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

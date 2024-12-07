@@ -55,7 +55,8 @@ public class PrivatBankService {
         try {
             HttpResponse<String> response =
                     httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            CurrencyArchiveResponseDto dataDto = objectMapper.readValue(response.body(), CurrencyArchiveResponseDto.class);
+            CurrencyArchiveResponseDto dataDto =
+                    objectMapper.readValue(response.body(), CurrencyArchiveResponseDto.class);
             return dataDto;
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
