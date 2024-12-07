@@ -82,7 +82,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private void helpCommandReceived(Long chatId, String name) {
         String answer = """
-                Вітаю, %s!
                 
                 Щоб запустити бота використовуйте команду /start
                 
@@ -90,7 +89,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 
                 Щоб дізнатись курс валют використовуйте команду /rate
                 
-                """.formatted(name);
+                """;
 
         sendMessage(chatId, answer);
     }
