@@ -37,4 +37,4 @@ To connect to your telegrambot, you should replace PlaceHolders in application.p
 - /rate: Get currencies rates
 - /help: Get help
 - /archive: Get help about archive
-- /currenciesArchive - Get currencies rates from archive
+- /currenciesArchive date - Get currencies rates from archive
