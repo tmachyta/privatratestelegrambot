@@ -30,7 +30,8 @@ To connect to your telegrambot, you should replace PlaceHolders in application.p
 - bot.key= -> replace with your api key to TelegramBot
 
 
-Features:
+# Features 🤌:
+
 🛠️ Commands:
 - /start: Start bot
 - /rate: Get currencies rates
