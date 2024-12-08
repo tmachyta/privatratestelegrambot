@@ -50,9 +50,10 @@ public class TelegramBot extends TelegramLongPollingBot {
     private static final String START = "/start";
     private static final String HELP = "/help";
     private static final String RATE = "/rate";
-    private static final String ARCHIVE_HELP = "/archiveHelp";
+    private static final String ARCHIVE_HELP = "/archive";
     private static final String CURRENCIES_ARCHIVE = "/currenciesArchive";
-    private static final String CURRENCIES_RATE = "Курс валют:\n";
+    private static final String CURRENCIES_RATE = "Курс валют за %s :\n";
+    private static final String CURRENCIES = "Курс валют :\n";
     private static final String BUY_OR_SALE = "%s/%s: Купівля: %s, Продаж: %s\n";
     private static final int DEFAULT_YEAR = 4;
     private final BotConfig botConfig;
@@ -109,7 +110,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void rateCommandReceived(Long chatId) {
         List<CurrencyResponseDataDto> currencies = privatBankService.getCurrencies();
 
-        StringBuilder message = new StringBuilder(CURRENCIES_RATE);
+        StringBuilder message = new StringBuilder(CURRENCIES);
 
         currencies.stream()
                 .forEach(currency -> {
@@ -137,7 +138,9 @@ public class TelegramBot extends TelegramLongPollingBot {
         CurrencyArchiveResponseDto currenciesArchiveRates =
                 privatBankService.getCurrenciesArchiveRates(date);
 
-        StringBuilder message = new StringBuilder(CURRENCIES_RATE + date + ":\n");
+        String formatted = CURRENCIES_RATE.formatted(date);
+
+        StringBuilder message = new StringBuilder(formatted);
 
         currenciesArchiveRates.getExchangeRate()
                 .forEach(currency -> {
@@ -153,9 +156,9 @@ public class TelegramBot extends TelegramLongPollingBot {
         sendMessage(chatId, message.toString());
     }
 
-    private void handleCurrenciesArchiveCommand(String messageText, Long chatId) {
-        if (messageText.matches(CURRENCIES_ARCHIVE + "\\s+\\d{4}-\\d{2}-\\d{2}")) {
-            String dateString = messageText.split("\\s+")[1];
+    private void handleCurrenciesArchiveCommand(String message, Long chatId) {
+        if (message.matches(CURRENCIES_ARCHIVE + "\\s+\\d{4}-\\d{2}-\\d{2}")) {
+            String dateString = message.split("\\s+")[1];
             try {
                 LocalDate date = LocalDate.parse(dateString);
 
